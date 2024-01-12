@@ -3,17 +3,16 @@
 const openModal = () => document.getElementById('modal')
     .classList.add('active')
 
-const closeModal = () => document.getElementById('modal')
-    .classList.remove('active')
+const closeModal = () => {
+    document.getElementById('modal').classList.remove('active')
+    clearFields() // apaga os dados do input
+}
 
 document.getElementById('cadastrarCliente')
     .addEventListener('click', openModal)
 
 document.getElementById('modalClose')
     .addEventListener('click', closeModal)
-
-
-
 
 //  CRUD - Create Read Update Delete
 
@@ -80,8 +79,7 @@ const saveClient = () => {
             celular: document.getElementById('celular').value,
             cidade: document.getElementById('cidade').value
         }
-        createClient(client)
-        clearFields() // apaga os dados do input
+        createClient(client) // envia pro localStore
         closeModal() // fecha o modal
     }
 }
@@ -97,3 +95,5 @@ const clearFields = () => {
     const fields = document.querySelectorAll('.modal-field')
     fields.forEach(fields => fields.value = "")
 }
+
+updateTable()
